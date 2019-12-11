@@ -1,0 +1,18 @@
+.app {
+  background: #e7b784;
+  padding: 30px;
+  height: 100%;
+  display: flex;
+}
+
+.list {
+  background: #e8e8e8;
+  border-radius: 4px;
+  padding: 5px;
+  width: -webkit-fill-available;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin: 0px 0px 0px 2px;
+}
+
