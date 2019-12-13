@@ -1,8 +1,14 @@
 import React, { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import "./App.css";
-import allMenu from './Menu.js'
-import Input from './components/Input.js'
+import firebase from './firebase.js';
+import allMenu from './Menu.js';
+import Input from './components/Input.js';
+
+
+// firebase.firestore().collection('menu').add({
+
+// })
 
 const MenuItem = ({ title, items }) => {
   const Product = (props) => (
@@ -16,7 +22,7 @@ const MenuItem = ({ title, items }) => {
   )
   return (
     <>
-    <p className="mb-2">{title}</p>
+    <p className="text">{title}</p>
     <div className="list">
       {items.map((item, index) => <Product key={index} {...item} />)}
     </div>
@@ -36,15 +42,6 @@ const List = () => {
 
 
 const App = () => {
-//  const [cart, setCart] = useState([])
-
-//  const handleAddItem = () => {
-//   setCart(cart);
-// };
-//    useEffect(()=>{
-//      setCart(...cart)
-//    },[]
-//    )
 
   const [ input, setInput ] = useState('');
   const [ inputN, setInputN ] = useState(0);
@@ -62,8 +59,7 @@ const App = () => {
       <MenuItem items={allMenu.extras} title="Adicionais" />
       <MenuItem items={allMenu.burgers} title="Burgers" />
       <MenuItem items={allMenu.breakfast} title="Café da Manhã" />
-      <Button onClick={handleSubmit}></Button>
-      <div>         
+      <div className="text">         
          <Input 
              id='clientName'
              title='Nome'
@@ -81,7 +77,7 @@ const App = () => {
              onChange={(e) => setInputN(e.target.value)}
          />
          <Button
-             onClick={handleSubmit}>Enviar para cozinha
+              className="btn-cozinha" onClick={handleSubmit}>Enviar para cozinha
           </Button>
 
      </div>

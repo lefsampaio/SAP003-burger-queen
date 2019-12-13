@@ -19,25 +19,32 @@
 
   
 .menu-item {
-  padding: 20px 10px;
+  background-color: #ffffff;
+  padding: 12px 0px;
   margin: 5px;
-  background-color: #FFFEC7;
   width: 100%;
   display: flex;
-  justify-content: space-between;
   border-radius: 5px;
   box-shadow: 4px 4px 5px 0px rgba(179,179,179,0.7);
   flex-direction:column;
 }
 
 .text {
-  font-family: 'Dosis', sans-serif;
-  color: #36342A;
+  color: #D99F7E;
   font-size: 1.3em;
+}
+.btn-cozinha{
+  background-color: #D99F7E;
 }
 
 .menu-name {
+  background-color:white;
   font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  display:flex;
+  justify-content: space-between;
+  padding: 15px 10px 11px 11px;
 }
 
 
