@@ -1,101 +1,97 @@
-import React, { useState } from "react";
-import "./App.css";
+import React, { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
+import "./App.css";
 import allMenu from './Menu.js'
+import Input from './components/Input.js'
 
-const Menu = ({ item }) => <ul className="mb-1 list-group"> <Button className="p-1 alert-info mb-2 list-group-item-action">{item.name}</Button><p>R${item.price}</p></ul>;
-// const Form = ({ addClient }) => {
-//   const [value, setValue] = useState("");
+const MenuItem = ({ title, items }) => {
+  const Product = (props) => (
+    <ul className="menu-item">
+      <Button 
+          onClick={props.onClick}
+          className="menu-name">{props.name}
+          <span className="menu-price subtitle">R${props.price}</span>
+      </Button>
+    </ul>
+  )
+  return (
+    <>
+    <p className="mb-2">{title}</p>
+    <div className="list">
+      {items.map((item, index) => <Product key={index} {...item} />)}
+    </div>
+    </>
+  )
+}
+const List = () => {
+  return (
+      <div id="orderList" >
+          <div>
+          <p >Total:</p>
+          <p >R$ total</p>
+          </div>
+      </div>
+  );
+};
 
-//   const handleSubmit = e => {
-//     e.preventDefault();
-//     if (!value) return;
-//     addClient(value);
-//     setValue("");
-//   };
-
-//   return (
-//     <form onSubmit={handleSubmit}>
-//       <input
-//         type="text"
-//         className="input"
-//         value={value}
-//         onChange={e => setValue(e.target.value)}
-//       />
-//     </form>
-//   );
-// }
 
 const App = () => {
-  const [cart, setCart] = useState([])
-  const [items, setItem] = useState(allMenu)
+//  const [cart, setCart] = useState([])
 
-  const handleChange = event => {
-    setItem(event.target.items);
-  };
-  const handleSubmit = event => {
-    if (items) {
-      setCart(items.concat(cart));
-    }
-    setItem('');
-    event.preventDefault();
-  };
+//  const handleAddItem = () => {
+//   setCart(cart);
+// };
+//    useEffect(()=>{
+//      setCart(...cart)
+//    },[]
+//    )
 
-  // const addClient = client => {
-  //   const newTodos = [...clients, { client }];
-  //   setClients(newTodos);
-  // }
+  const [ input, setInput ] = useState('');
+  const [ inputN, setInputN ] = useState(0);
+  
+  const handleSubmit = () => {
+      console.log(input, inputN)
+  }  
+
 
   return (
-    <section className="app">
-      <div className="list">
-        <p className="m-1">Acompanhamentos</p>
-        {items.sideDish.map((item) => (
-          <Menu
-            item={item}
-          />
-        ))}
-      </div>
-      <div className="list">
-        <p className="m-1">Bebidas</p>
-        {items.beverage.map((item) => (
-          <Menu
-            item={item}
-          />
-        ))}
-      </div>
-      <div className="list">
-        <p className="m-1">Adicionais</p>
-        {items.extras.map((item) => (
-          <Menu
-            item={item}
-          />
-        ))}
-      </div>
-      <div className="list">
-        <p className="m-1">Burgers</p>
-        {items.burgers.map((item) => (
-          <Menu
-            item={item}
-          />
-        ))}
-      </div>
-      <div className="list">
-        <p className="m-1">Café Da Manhã</p>
-        {items.breakfast.map((item) => (
-          <Menu
-            item={item}
+    <>
+    <section className="menu-item">
+      <MenuItem items={allMenu.sideDish} title="Acompanhamentos" />
+      <MenuItem items={allMenu.beverage} title="Bebidas" />
+      <MenuItem items={allMenu.extras} title="Adicionais" />
+      <MenuItem items={allMenu.burgers} title="Burgers" />
+      <MenuItem items={allMenu.breakfast} title="Café da Manhã" />
+      <Button onClick={handleSubmit}></Button>
+      <div>         
+         <Input 
+             id='clientName'
+             title='Nome'
+             type='text'
+             placeholder='Nome do cliente'
+             value={input}
+             onChange={(e) => setInput(e.target.value)}
+         />
+         <Input 
+             id='clientTable'
+             title='Mesa'
+             type='number'
+             placeholder='00'
+             value={inputN}
+             onChange={(e) => setInputN(e.target.value)}
+         />
+         <Button
+             onClick={handleSubmit}>Enviar para cozinha
+          </Button>
 
-          />
-        ))}
-      </div>
-      <form onSubmit={handleSubmit}>
-        <button type="submit">Add Item</button>
-      </form>
-      {/* <Form addClient={addClient} /> */}
-
+     </div>
     </section>
+    
+    </>
   );
+
+
+
 }
 export default App;
 

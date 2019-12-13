@@ -1,18 +1,43 @@
-.app {
-  background: #e7b784;
-  padding: 30px;
-  height: 100%;
-  display: flex;
-}
 
 .list {
   background: #e8e8e8;
   border-radius: 4px;
   padding: 5px;
-  width: -webkit-fill-available;
   display: flex;
-  flex-direction: column;
-  text-align: center;
-  margin: 0px 0px 0px 2px;
 }
+.section {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.menu-price {
+  display: flex;
+  justify-content: center;
+  padding-left: 20px;
+}
+
+  
+.menu-item {
+  padding: 20px 10px;
+  margin: 5px;
+  background-color: #FFFEC7;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 5px;
+  box-shadow: 4px 4px 5px 0px rgba(179,179,179,0.7);
+  flex-direction:column;
+}
+
+.text {
+  font-family: 'Dosis', sans-serif;
+  color: #36342A;
+  font-size: 1.3em;
+}
+
+.menu-name {
+  font-weight: bold;
+}
+
 
