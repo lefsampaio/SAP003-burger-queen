@@ -41,31 +41,21 @@ const List = () => {
 };
 
 
-const App = () => {
+const Menu = () => {
   const [menu, setMenu] = useState('')
   const [input, setInput] = useState('');
   const [inputN, setInputN] = useState(0);
 
   useEffect(() => {
-    firebase.firestore().collection('menu').get().then((snap) => {
-      const items = snap.docs.map((doc) => ({
-        id: doc.name,
-        ...doc.data()
-      }))
-      setMenu(items)
+    firebase.firestore().collection('menu').get().then(doc => {
+      doc.forEach(data => setMenu(data.data()))
     })
-
   }, [])
-  // useEffect(() => {
-  //   firebase.firestore().collection('menu').onSnapshot(snap => {
-  //     snap.docs.map(doc => setMenu(doc.data()))
-  //   })
-  // }, [])
 
   const handleSubmit = () => {
     console.log(input, inputN)
   }
-  const handleAdd = () => {
+  const handleAdd = () => { 
     console.log(menu)
   }
 
@@ -111,61 +101,4 @@ const App = () => {
 
 
 }
-export default App;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import Order from './pages/order';
-// import Kitchen from './pages/kitchen';
-// import PrivateRoute from './components/PrivateRoute';
-// import { AuthProvider } from "./components/Auth";
-
-// const App = () => {
-//   return (
-//     <AuthProvider>
-//       <Router>
-//         <div className="App">
-//           <header className="App-header">
-//             <img className="App-logo" src={logo} alt="Burger Queen" />
-//           </header>
-//           <div>
-//             <Route exact path="/" component={Auth} />
-//             <PrivateRoute path="/order" component={Order} />
-//             <PrivateRoute path="/kitchen" component={Kitchen} />
-//           </div>
-//         </div>
-//       </Router>
-//     </AuthProvider>
-//   );
-// }
-
-// export default App;
+export default Menu;
