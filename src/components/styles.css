@@ -1,0 +1,64 @@
+.burger-queen{
+    color: teal;
+    text-align: center;
+}
+/* .list {
+    background: #e8e8e8;
+    border-radius: 4px;
+    padding: 5px;
+    display: flex;
+  } */
+  .section {
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+  }
+  .order{
+    display: flex;
+    justify-content: flex-start;
+  }
+    
+  .menu-item {
+    background-color: #ffffff;
+    padding: 15px 5px 0px 0px;
+    margin: 5px;
+    width: 100%;
+    display: flex;
+    border-radius: 5px;
+    box-shadow: 4px 4px 5px 0px rgba(179,179,179,0.7);
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .text {
+    color: #D99F7E;
+    font-size: 1.3em;
+    text-align: center;
+    padding: 0px 0px 0px 16px;
+    margin:0;
+  }
+  .btn-cozinha{
+    background-color: #D99F7E;
+  }
+  
+  .menu-name {
+    background-color:white;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    display:flex;
+  }
+  
+  .menu-text{
+    padding: 0px 0px 15px 10px;
+  }
+  .btn-cozinha{
+    background-color: #ffffff;
+    padding: 5px 5px 5px 5px;
+    border-radius: 5px;
+    box-shadow: 4px 4px 5px 0px rgba(179,179,179,0.7);
+   
+
+  }
+  

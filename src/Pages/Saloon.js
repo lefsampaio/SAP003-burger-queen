@@ -1,104 +1,56 @@
-import React, { useState, useEffect } from "react";
-import Button from "react-bootstrap/Button";
-import "./App.css";
-import firebase from './firebase.js';
-import allMenu from './Menu.js';
-import Input from './components/Input.js';
+import React, { useState, useEffect } from 'react';
+import './components/styles.css';
+import Breakfast from './components/Breakfast.js';
+import AllDay from './components/AllDay.js';
+import Logo from './components/BurgerQueen.js';
+import firebase from './firebase'
+import MenuItem from './components/MenuItem'
+// import Order from './components/Order';
 
-
-
-// firebase.firestore().collection('menu').add({
-
-// })
-const MenuItem = ({ title, items }) => {
-  const Product = (props) => (
-    <ul className="menu-item">
-      <Button
-        onClick={props.onClick}
-        className="menu-name">{props.name}
-        <span className="menu-price subtitle">R${props.price}</span>
-      </Button>
-    </ul>
-  )
-  return (
-    <>
-      <p className="text">{title}</p>
-      <div className="list">
-        {items.map((item, index) => <Product key={index} {...item} />)}
-      </div>
-    </>
-  )
-}
-const List = () => {
-  return (
-    <div id="orderList" >
-      <div>
-        <p >Total:</p>
-        <p >R$ total</p>
-      </div>
-    </div>
-  );
-};
-
-
-const Menu = () => {
-  const [menu, setMenu] = useState('')
-  const [input, setInput] = useState('');
-  const [inputN, setInputN] = useState(0);
+const App = () => {
+  document.title = `Burger Queen`;
+  const [pedidos, setPedidos] = useState([]);
+  const [items, setItems] = useState([])
+  const [total, setTotal] = useState(0);
 
   useEffect(() => {
-    firebase.firestore().collection('menu').get().then(doc => {
-      doc.forEach(data => setMenu(data.data()))
+    firebase.firestore().collection('menu').get().then((snap => {
+      const getMenu = snap.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data()
+      }))
+      setItems(getMenu);
     })
+    )
   }, [])
+  const addItem = (item) => {
+    if (!pedidos.includes(item)) {
+      item.count = 1
+      setPedidos([...pedidos, item])
 
-  const handleSubmit = () => {
-    console.log(input, inputN)
+    } else {
+      item.count += 1
+      setPedidos([...pedidos])
+    }
+    setTotal(total + (item.price));
+    console.log(total)
   }
-  const handleAdd = () => { 
-    console.log(menu)
-  }
-
+  // const addItem = (item) => {
+  //   setPedidos([...pedidos, item])
+  // }
   return (
-    <>
-      <section className="menu-item">
-        <MenuItem items={allMenu.sideDish} title="Acompanhamentos" />
-        <MenuItem items={allMenu.beverage} title="Bebidas" />
-        <MenuItem items={allMenu.extras} title="Adicionais" />
-        <MenuItem items={allMenu.burgers} title="Burgers" />
-        <MenuItem items={allMenu.breakfast} title="Café da Manhã" />
-        <div className="text">
-          <Input
-            id='clientName'
-            title='Nome'
-            type='text'
-            placeholder='Nome do cliente'
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-          />
-          <Input
-            id='clientTable'
-            title='Mesa'
-            type='number'
-            placeholder='00'
-            value={inputN}
-            onChange={(e) => setInputN(e.target.value)}
-          />
-          <List />
-          <Button
-            className="btn-cozinha" onClick={handleSubmit}>Enviar para cozinha
-          </Button>
-          <Button
-            className="btn-cozinha" onClick={handleAdd}>Pegar menu
-          </Button>
-
-        </div>
-      </section>
-
-    </>
+    <div className="app">
+      <Logo />
+      <h3 className="text">Menu</h3>
+      <Breakfast items={items} onClick={addItem} />
+      <AllDay items={items} />
+      <h1>Order</h1>
+      <li className="section order">
+        <ul>{pedidos.map(pe => <MenuItem key={pe.id} name={pe.name} price={pe.price} />)}
+          <p>Total:{pedidos.map(pe => pe.price * pe.count + ',00')} </p></ul>
+      </li>
+    </div>
   );
-
-
-
 }
-export default Menu;
+
+export default App;
