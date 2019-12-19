@@ -2,12 +2,11 @@ import React from 'react';
 import './styles.css';
 import MenuItem from './MenuItem.js';
 
-
 const AllDay = (props) => {
     return (
         <>
-            <h3 className="text">Menu All Day</h3>
             <section>
+                <h3 className="text">Menu All Day</h3>
                 <div>
                     <span className="text">Acompanhamentos</span>
                     <span className="section">

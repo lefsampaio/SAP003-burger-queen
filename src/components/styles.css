@@ -1,13 +1,37 @@
+.app{
+  display: flex;
+  flex-flow: wrap;
+}
 .burger-queen{
     color: teal;
     text-align: center;
 }
-/* .list {
-    background: #e8e8e8;
-    border-radius: 4px;
-    padding: 5px;
-    display: flex;
-  } */
+.ul{
+  list-style: none;
+}
+.nav-wrapper{
+
+}
+
+.order-div{
+  flex-direction: column;
+  background-color: #ffffff;
+  padding: 15px 5px 0px 0px;
+  margin: 5px;
+  width: 100%;
+  display: flex;
+  border-radius: 5px;
+  box-shadow: 4px 4px 5px 0px rgba(179,179,179,0.7);
+  align-items: center;
+}
+.list {
+  background: #e8e8e8;
+  border-radius: 4px;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  }
   .section {
     padding: 10px;
     display: flex;
