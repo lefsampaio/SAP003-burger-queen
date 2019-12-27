@@ -4,7 +4,7 @@ import Breakfast from '../components/Breakfast.js';
 import AllDay from '../components/AllDay.js';
 import Logo from '../components/BurgerQueen.js';
 import firebase from '../firebase'
-import MenuItem from '../components/MenuItem'
+import ResumeItem from '../components/ResumeItem'
 import Button from '../components/Button'
 import Input from '../components/Input';
 
@@ -95,8 +95,8 @@ const Saloon = () => {
           />
           <section>
             <div>
-              {pedidos.map(pe => <MenuItem key={pe.id} name={pe.name} price={pe.price} count={pe.count} onClick={() => removeItem(pe)} />)}
-              {pedidos.map(pe => <Button class="" onClick={() => removeItem(pe)}>X</Button>)}
+              {pedidos.map(pe => <ResumeItem key={pe.id} name={pe.name} price={pe.price} count={pe.count} onClick={() => removeItem(pe)} />)}
+              {/* {pedidos.map(pe => <Button className="" key={pe.id} onClick={() => removeItem(pe)}>X</Button>)} */}
             </div>
             <p>Total:{pedidos.reduce((acc, curr) => acc + curr.price * curr.count, 0) + ",00"} </p>
             <Button

@@ -12,25 +12,24 @@ function Kitchen() {
         ...doc.data()
       }))
       getOrders(pedidos);
-      console.log(pedidos.map(i => i.client))
+      // console.log(pedidos.map(i => i.client))
     })
     )
   }, [])
 
   return (
     <>
-      <h2>Kitchen</h2>
-      {/* {console.log(orders.map(order => order.pedidos))} */}
+      <h2 className="burger-queen">Kitchen</h2>
       {orders.map(order => {
         return (
-          <section className="section">
+          <section className="section" >
             <div className="menu-item">
               <span className="menu-name menu-text">Cliente: {order.client} </span>
               <span className="menu-name menu-text">Mesa: {order.table}</span>
             </div>
             <div className="order-div">
               <span className="menu-name menu-text">Pedidos:</span>
-              {order.pedidos.map(p => <span className="menu-name">{p.name} qtd: {p.count}</span>)}
+              {order.pedidos.map(p => <span className="menu-name" key={p.id}> {p.name} qtd: {p.count}</span>)}
 
 
             </div>

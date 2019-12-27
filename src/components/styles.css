@@ -8,9 +8,27 @@
 }
 .ul{
   list-style: none;
+  display: flex;
+  width: 100%;
 }
 .nav-wrapper{
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
 
+}
+.nav-li{
+  display: flex;
+  flex: auto;
+}
+.nav-link{
+  margin: auto;
+}
+.nav{
+  background: antiquewhite;
+    align-items: center;
+    display: flex;
+    justify-content: center;
 }
 
 .order-div{
@@ -31,11 +49,17 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  width:100%;
   }
   .section {
     padding: 10px;
     display: flex;
     justify-content: center;
+  }
+  .section-cafe{
+    display: flex;
+    flex: auto;
+    flex-direction: column;
   }
   .order{
     display: flex;
