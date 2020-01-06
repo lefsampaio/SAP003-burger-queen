@@ -1,7 +1,10 @@
 import './components/styles.css';
 import Saloon from './Pages/Saloon';
 import Kitchen from './Pages/Kitchen'
+import Logo from './components/BurgerQueen'
 import React from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faDoorClosed, faHamburger } from '@fortawesome/free-solid-svg-icons'
 import {
   BrowserRouter as Router,
   Switch,
@@ -14,12 +17,13 @@ export default function App() {
     <Router>
       <nav className="nav">
         <div className="nav-wrapper">
+          <Logo />
           <ul className="ul">
             <li className="nav-li">
-              <Link className="nav-link" to="/">Salão</Link>
+              <Link className="nav-link" to="/"><FontAwesomeIcon icon={faDoorClosed} />Salão</Link>
             </li>
             <li className="nav-li">
-              <Link className="nav-link" to="/Kitchen">Cozinha</Link>
+              <Link className="nav-link" to="/Kitchen"> <FontAwesomeIcon icon={faHamburger} /> Cozinha</Link>
             </li>
           </ul>
         </div>

@@ -38,6 +38,7 @@ const Saloon = () => {
     }
     setTotal(total + (item.price));
   }
+
   const removeItem = (item) => {
     const index = pedidos.findIndex((i) => i.id === item.id)
     pedidos[index].count--;
@@ -47,38 +48,49 @@ const Saloon = () => {
     setPedidos([...pedidos])
   }
 
-
-  function onSubmit(e) {
+  const onSubmit = (e) => {
     e.preventDefault()
-    firebase
-      .firestore()
-      .collection('orders')
-      .add({
-        client,
-        table,
-        pedidos,
-        total
-      })
-      .then(() => {
-        setTable('')
-        setClient('')
-        setPedidos([])
-        setTotal('')
+    if (pedidos.length && table && client) {
+      firebase
+        .firestore()
+        .collection('orders')
+        .add({
+          client,
+          table,
+          pedidos,
+          total
+        })
+        .then(() => {
+          setTable('')
+          setClient('')
+          setPedidos([])
+          setTotal('')
 
-      })
+        })
+    }
+    else if (!pedidos.length) {
+      alert('Selecione ao menos um produto para realizar o pedido')
+    }
+    else if (!client) {
+      alert('Insira o nome do cliente')
+    }
+    else if (!table) {
+      alert('Insira o número da mesa')
+    }
+
   }
-
 
   return (
     <>
-      <Logo />
-      <h3 className="text">Menu</h3>
+      <section className="root">
       <div className="app">
+      <h3 className="text">Menu</h3>
         <Breakfast items={items} onClick={addItem} />
         <AllDay items={items} onClick={addItem} />
-
-        <h1>Order</h1>
-        <li className="list">
+        </div>
+      <div className="order-list">
+        <form className="list">
+        <h1 className="text">Order</h1>
           <Input
             id='clientName'
             title='Nome do cliente'
@@ -88,23 +100,24 @@ const Saloon = () => {
           />
           <Input
             id='clientTable'
+            className="input-table"
             title='Número da Mesa'
             type='number'
             value={table}
             onChange={(e) => setTable(e.target.value)}
           />
           <section>
-            <div>
+            <div className="order-itens">
               {pedidos.map(pe => <ResumeItem key={pe.id} name={pe.name} price={pe.price} count={pe.count} onClick={() => removeItem(pe)} />)}
-              {/* {pedidos.map(pe => <Button className="" key={pe.id} onClick={() => removeItem(pe)}>X</Button>)} */}
             </div>
             <p>Total:{pedidos.reduce((acc, curr) => acc + curr.price * curr.count, 0) + ",00"} </p>
             <Button
-              class="menu-text menu-item" onClick={onSubmit}>Enviar Pedido
+              class="menu-name btn-enviar" onClick={onSubmit}>Enviar Pedido
           </Button>
           </section>
-        </li>
+        </form>
       </div>
+      </section>
     </>
   );
 }

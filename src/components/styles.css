@@ -1,18 +1,31 @@
 .app{
+  width: 100%;
   display: flex;
   flex-flow: wrap;
 }
+#root{
+  display: flex;
+  margin: 5px;
+}
+.root{
+  display: flex;
+  margin: 5px;
+}
 .burger-queen{
-    color: teal;
+    color:#011826;
     text-align: center;
+}
+.order-list{
+  display: flex;
+  width: 100%;
 }
 .ul{
   list-style: none;
   display: flex;
-  width: 100%;
+  flex-direction: column;
+
 }
 .nav-wrapper{
-  display: flex;
   width: 100%;
   justify-content: space-evenly;
 
@@ -22,13 +35,11 @@
   flex: auto;
 }
 .nav-link{
-  margin: auto;
+
 }
 .nav{
   background: antiquewhite;
-    align-items: center;
-    display: flex;
-    justify-content: center;
+
 }
 
 .order-div{
@@ -43,13 +54,14 @@
   align-items: center;
 }
 .list {
-  background: #e8e8e8;
+  background: #F2CEAE;
   border-radius: 4px;
   padding: 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width:100%;
+  text-align: center;
+  width: -webkit-fill-available;
   }
   .section {
     padding: 10px;
@@ -61,11 +73,24 @@
     flex: auto;
     flex-direction: column;
   }
-  .order{
+  .order-itens{
     display: flex;
-    justify-content: flex-start;
+    flex-direction: column;
   }
-    
+  .remove-btn{
+    border: none;
+    padding: 3px 5px 3px 5px;
+    background-color: #D99F7E;
+  }
+  .btn-enviar{
+    padding: 5px;
+    margin: 5px;
+    box-shadow: 4px 4px 5px 0px rgba(179,179,179,0.7);
+    justify-content: space-between;
+    align-items: flex-start;
+
+  }
+
   .menu-item {
     background-color: #ffffff;
     padding: 15px 5px 0px 0px;
@@ -74,13 +99,22 @@
     display: flex;
     border-radius: 5px;
     box-shadow: 4px 4px 5px 0px rgba(179,179,179,0.7);
-    flex-direction: row;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
+  }
+  .resume-item{
+    background-color: #ffffff;
+    padding: 15px 5px 0px 0px;
+    margin: 5px;
+    display: flex;
+    border-radius: 5px;
+    box-shadow: 4px 4px 5px 0px rgba(179,179,179,0.7);
+    justify-content: space-between;
+    align-items: flex-start;
   }
   
   .text {
-    color: #D99F7E;
+    color: #011826;
     font-size: 1.3em;
     text-align: center;
     padding: 0px 0px 0px 16px;
@@ -109,4 +143,6 @@
    
 
   }
+
+  
   
