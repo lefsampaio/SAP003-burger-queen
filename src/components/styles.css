@@ -3,6 +3,13 @@
   display: flex;
   flex-flow: wrap;
 }
+.app-kitchen{
+  width: 100%;
+  display: flex;
+  flex-flow: wrap;
+  flex-direction: column;
+  align-items: center;
+}
 #root{
   display: flex;
   margin: 5px;
@@ -12,7 +19,7 @@
   margin: 5px;
 }
 .burger-queen{
-    color:#011826;
+    color:#ffffff;
     text-align: center;
 }
 .order-list{
@@ -21,8 +28,7 @@
 }
 .ul{
   list-style: none;
-  display: flex;
-  flex-direction: column;
+  text-align: center;
 
 }
 .nav-wrapper{
@@ -31,14 +37,15 @@
 
 }
 .nav-li{
-  display: flex;
-  flex: auto;
-}
-.nav-link{
 
 }
+.nav-link{
+  text-decoration: none;
+  color:#ffffff;
+}
+
 .nav{
-  background: antiquewhite;
+  background: #D95525;
 
 }
 
@@ -54,7 +61,7 @@
   align-items: center;
 }
 .list {
-  background: #F2CEAE;
+  background: rgba(238, 230, 230, 0.7);
   border-radius: 4px;
   padding: 5px;
   display: flex;
@@ -80,27 +87,19 @@
   .remove-btn{
     border: none;
     padding: 3px 5px 3px 5px;
-    background-color: #D99F7E;
+    background-color: #d99f7e00;
   }
   .btn-enviar{
     padding: 5px;
-    margin: 5px;
     box-shadow: 4px 4px 5px 0px rgba(179,179,179,0.7);
-    justify-content: space-between;
-    align-items: flex-start;
+    background: #D95525;
+    border: none;
+    border-radius: 5px;
 
   }
 
   .menu-item {
-    background-color: #ffffff;
-    padding: 15px 5px 0px 0px;
-    margin: 5px;
     width: 100%;
-    display: flex;
-    border-radius: 5px;
-    box-shadow: 4px 4px 5px 0px rgba(179,179,179,0.7);
-    justify-content: space-between;
-    align-items: flex-start;
   }
   .resume-item{
     background-color: #ffffff;

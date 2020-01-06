@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import '../components/styles.css';
 import Breakfast from '../components/Breakfast.js';
 import AllDay from '../components/AllDay.js';
-import Logo from '../components/BurgerQueen.js';
 import firebase from '../firebase'
 import ResumeItem from '../components/ResumeItem'
 import Button from '../components/Button'
 import Input from '../components/Input';
+import notification from '../components/notification';
 
 const Saloon = () => {
   document.title = `Burger Queen`;
@@ -50,6 +50,7 @@ const Saloon = () => {
 
   const onSubmit = (e) => {
     e.preventDefault()
+
     if (pedidos.length && table && client) {
       firebase
         .firestore()
@@ -61,12 +62,17 @@ const Saloon = () => {
           total
         })
         .then(() => {
+          notification({
+            title: "Pedido enviado com sucesso!",
+            message: "Obrigada!",
+            type: "success",
+          })
           setTable('')
           setClient('')
           setPedidos([])
           setTotal('')
-
         })
+
     }
     else if (!pedidos.length) {
       alert('Selecione ao menos um produto para realizar o pedido')
@@ -83,40 +89,40 @@ const Saloon = () => {
   return (
     <>
       <section className="root">
-      <div className="app">
-      <h3 className="text">Menu</h3>
-        <Breakfast items={items} onClick={addItem} />
-        <AllDay items={items} onClick={addItem} />
+        <div className="app">
+          <h3 className="text">Menu</h3>
+          <Breakfast items={items} onClick={addItem} />
+          <AllDay items={items} onClick={addItem} />
         </div>
-      <div className="order-list">
-        <form className="list">
-        <h1 className="text">Order</h1>
-          <Input
-            id='clientName'
-            title='Nome do cliente'
-            type='text'
-            value={client}
-            onChange={(e) => setClient(e.target.value)}
-          />
-          <Input
-            id='clientTable'
-            className="input-table"
-            title='Número da Mesa'
-            type='number'
-            value={table}
-            onChange={(e) => setTable(e.target.value)}
-          />
-          <section>
-            <div className="order-itens">
-              {pedidos.map(pe => <ResumeItem key={pe.id} name={pe.name} price={pe.price} count={pe.count} onClick={() => removeItem(pe)} />)}
-            </div>
-            <p>Total:{pedidos.reduce((acc, curr) => acc + curr.price * curr.count, 0) + ",00"} </p>
-            <Button
-              class="menu-name btn-enviar" onClick={onSubmit}>Enviar Pedido
+        <div className="order-list">
+          <form className="list">
+            <h1 className="text">Order</h1>
+            <Input
+              id='clientName'
+              title='Nome do cliente'
+              type='text'
+              value={client}
+              onChange={(e) => setClient(e.target.value)}
+            />
+            <Input
+              id='clientTable'
+              className="input-table"
+              title='Número da Mesa'
+              type='number'
+              value={table}
+              onChange={(e) => setTable(e.target.value)}
+            />
+            <section>
+              <div className="order-itens">
+                {pedidos.map(pe => <ResumeItem key={pe.id} name={pe.name} price={pe.price} count={pe.count} onClick={() => removeItem(pe)} />)}
+              </div>
+              <p>Total:{pedidos.reduce((acc, curr) => acc + curr.price * curr.count, 0) + ",00"} </p>
+              <Button
+                class="btn-enviar burger-queen" onClick={onSubmit}>Enviar Pedido
           </Button>
-          </section>
-        </form>
-      </div>
+            </section>
+          </form>
+        </div>
       </section>
     </>
   );
