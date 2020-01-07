@@ -54,7 +54,6 @@ const Kitchen = () => {
       firebase
         .firestore().collection('orders').doc(item.id).delete()
         .then(() => {
-          // setDelivery([...delivery, item])
           console.log('deletou')
         })
     }

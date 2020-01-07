@@ -106,7 +106,6 @@ const Saloon = () => {
             />
             <Input
               id='clientTable'
-              className="input-table"
               title='Número da Mesa'
               type='number'
               value={table}
@@ -116,7 +115,7 @@ const Saloon = () => {
               <div className="order-itens">
                 {pedidos.map(pe => <ResumeItem key={pe.id} name={pe.name} price={pe.price} count={pe.count} onClick={() => removeItem(pe)} />)}
               </div>
-              <p>Total:{pedidos.reduce((acc, curr) => acc + curr.price * curr.count, 0) + ",00"} </p>
+              <p className="text">Total:{pedidos.reduce((acc, curr) => acc + curr.price * curr.count, 0) + ",00"} </p>
               <Button
                 class="btn-enviar burger-queen" onClick={onSubmit}>Enviar Pedido
           </Button>

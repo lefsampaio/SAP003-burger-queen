@@ -12,7 +12,6 @@
 }
 #root{
   display: flex;
-  margin: 5px;
 }
 .root{
   display: flex;
@@ -26,26 +25,25 @@
   display: flex;
   width: 100%;
 }
-.ul{
+.div-list{
   list-style: none;
-  text-align: center;
-
 }
 .nav-wrapper{
   width: 100%;
-  justify-content: space-evenly;
-
 }
-.nav-li{
 
-}
 .nav-link{
   text-decoration: none;
-  color:#ffffff;
+  color: #ffffff;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
 }
 
 .nav{
   background: #D95525;
+  padding: 10px;
 
 }
 
@@ -61,14 +59,15 @@
   align-items: center;
 }
 .list {
+
   background: rgba(238, 230, 230, 0.7);
-  border-radius: 4px;
   padding: 5px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   text-align: center;
-  width: -webkit-fill-available;
+  }
+  .input-border{
+    border-radius: 5px;
+    border: none;
+    padding: 10px;
   }
   .section {
     padding: 10px;
@@ -88,6 +87,7 @@
     border: none;
     padding: 3px 5px 3px 5px;
     background-color: #d99f7e00;
+    color:#D95525;
   }
   .btn-enviar{
     padding: 5px;
@@ -116,8 +116,8 @@
     color: #011826;
     font-size: 1.3em;
     text-align: center;
-    padding: 0px 0px 0px 16px;
     margin:0;
+    padding: 5px;
   }
   .btn-cozinha{
     background-color: #D99F7E;

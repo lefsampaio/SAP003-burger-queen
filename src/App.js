@@ -18,14 +18,14 @@ export default function App() {
       <nav className="nav">
         <div className="nav-wrapper">
           <Logo />
-          <ul className="ul">
+          <div className="div-list">
             <li className="nav-li">
               <Link className="nav-link" to="/"><FontAwesomeIcon icon={faDoorClosed} />Salão</Link>
             </li>
             <li className="nav-li">
               <Link className="nav-link" to="/Kitchen"> <FontAwesomeIcon icon={faHamburger} /> Cozinha</Link>
             </li>
-          </ul>
+          </div>
         </div>
       </nav>
       <Switch>
