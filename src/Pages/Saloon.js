@@ -6,7 +6,7 @@ import firebase from '../firebase'
 import ResumeItem from '../components/ResumeItem'
 import Button from '../components/Button'
 import Input from '../components/Input';
-import notification from '../components/notification';
+// import notification from '../components/notification';
 
 const Saloon = () => {
   document.title = `Burger Queen`;
@@ -28,6 +28,7 @@ const Saloon = () => {
   }, [])
 
   const addItem = (item) => {
+
     if (!pedidos.includes(item)) {
       item.count = 1
       setPedidos([...pedidos, item])
@@ -39,9 +40,11 @@ const Saloon = () => {
     setTotal(total + (item.price));
   }
 
-  const removeItem = (item) => {
+  const removeItem = (item, e) => {
+    e.preventDefault()
     const index = pedidos.findIndex((i) => i.id === item.id)
     pedidos[index].count--;
+
     if (pedidos[index].count === 0) {
       pedidos.splice(index, 1);
     }
@@ -50,7 +53,6 @@ const Saloon = () => {
 
   const onSubmit = (e) => {
     e.preventDefault()
-
     if (pedidos.length && table && client) {
       firebase
         .firestore()
@@ -59,14 +61,11 @@ const Saloon = () => {
           client,
           table,
           pedidos,
-          total
+          total,
+          status:'',
+          hourSend: new Date().getTime()
         })
         .then(() => {
-          notification({
-            title: "Pedido enviado com sucesso!",
-            message: "Obrigada!",
-            type: "success",
-          })
           setTable('')
           setClient('')
           setPedidos([])
@@ -113,7 +112,7 @@ const Saloon = () => {
             />
             <section>
               <div className="order-itens">
-                {pedidos.map(pe => <ResumeItem key={pe.id} name={pe.name} price={pe.price} count={pe.count} onClick={() => removeItem(pe)} />)}
+                {pedidos.map(pe => <ResumeItem key={pe.id} name={pe.name} price={pe.price} count={pe.count} onClick={(e) => removeItem(pe, e)} />)}
               </div>
               <p className="text">Total:{pedidos.reduce((acc, curr) => acc + curr.price * curr.count, 0) + ",00"} </p>
               <Button

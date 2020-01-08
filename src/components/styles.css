@@ -4,18 +4,25 @@
   flex-flow: wrap;
 }
 .app-kitchen{
-  width: 100%;
   display: flex;
-  flex-flow: wrap;
+  min-height: 200px;
+  background: rgba(238, 230, 230, 0.7);
+  margin: 5px;
   flex-direction: column;
-  align-items: center;
 }
 #root{
   display: flex;
+  min-height: 768px;
 }
 .root{
   display: flex;
   margin: 5px;
+  width: 100%;
+}
+.root-kitchen{
+  width: 100%;
+  flex-direction: column;
+
 }
 .burger-queen{
     color:#ffffff;
@@ -24,6 +31,11 @@
 .order-list{
   display: flex;
   width: 100%;
+}
+.order-done{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 .div-list{
   list-style: none;
@@ -50,20 +62,20 @@
 .order-div{
   flex-direction: column;
   background-color: #ffffff;
-  padding: 15px 5px 0px 0px;
   margin: 5px;
-  width: 100%;
   display: flex;
   border-radius: 5px;
   box-shadow: 4px 4px 5px 0px rgba(179,179,179,0.7);
   align-items: center;
+  min-width: 260px;
 }
 .list {
-
   background: rgba(238, 230, 230, 0.7);
   padding: 5px;
   text-align: center;
-  }
+  width: 100%;
+
+}
   .input-border{
     border-radius: 5px;
     border: none;
