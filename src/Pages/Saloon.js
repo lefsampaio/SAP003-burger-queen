@@ -6,8 +6,14 @@ import firebase from '../firebase'
 import ResumeItem from '../components/ResumeItem'
 import Button from '../components/Button'
 import Input from '../components/Input';
-// import notification from '../components/notification';
+import growl from 'growl-alert';
+import 'growl-alert/dist/growl-alert.css';
 
+const option =
+{
+  fadeAway: true,
+  fadeAwayTimeOut: 500,
+}
 const Saloon = () => {
   document.title = `Burger Queen`;
   const [pedidos, setPedidos] = useState([]);
@@ -61,25 +67,24 @@ const Saloon = () => {
           table,
           pedidos,
           total,
-          status: '',
+          status: 'pending',
           hourSend: new Date().getTime()
+        }).then(() => {
+          growl.success({ text: 'Pedido Enviado', ...option })
         })
-        .then(() => {
-          setTable('')
-          setClient('')
-          setPedidos([])
-          setTotal('')
-        })
-
+      setTable('')
+      setClient('')
+      setPedidos([])
+      setTotal('')
     }
     else if (!pedidos.length) {
-      alert('Selecione ao menos um produto para realizar o pedido')
+      growl.warning({ text: 'Selecione ao menos um produto para realizar o pedido', ...option })
     }
     else if (!client) {
-      alert('Insira o nome do cliente')
+      growl.warning({ text: 'Insira o nome do cliente', ...option })
     }
     else if (!table) {
-      alert('Insira o número da mesa')
+      growl.warning({ text: 'Insira o número da Mesa', ...option })
     }
 
   }
@@ -88,7 +93,7 @@ const Saloon = () => {
     <>
       <section className="root">
         <div className="app">
-          <h1  className="h2">Menu</h1>
+          <h1 className="h2">Menu</h1>
           <Breakfast items={items} onClick={addItem} />
           <AllDay items={items} onClick={addItem} />
         </div>

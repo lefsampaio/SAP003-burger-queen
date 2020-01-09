@@ -12,5 +12,5 @@ var firebaseConfig = {
     measurementId: "G-B1JCV5L152"
   };
   firebase.initializeApp(firebaseConfig);
-
+  firebase.firestore().enablePersistence();
   export default firebase;

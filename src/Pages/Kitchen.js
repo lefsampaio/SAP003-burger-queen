@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import firebase from '../firebase'
 import '../components/styles.css';
 import Button from '../components/Button'
-import { Link } from 'react-router-dom';
 const hmh = require('hmh');
 
 const Kitchen = () => {
@@ -11,7 +10,7 @@ const Kitchen = () => {
   const [delivery, setDelivery] = useState([]);
 
   useEffect(() => {
-    firebase.firestore().collection('orders').where('status', '==', '').onSnapshot((snap => {
+    firebase.firestore().collection('orders').where('status', '==', 'pending').onSnapshot({includeMetadataChanges:true},(snap => {
       const pedidos = snap.docs.map((doc) => ({
         id: doc.id,
         ...doc.data()
@@ -40,7 +39,6 @@ const Kitchen = () => {
 
 
   const orderDone = (item) => {
-
     firebase
       .firestore().collection('orders').doc(item.id).update({
         status: 'done',
@@ -74,7 +72,7 @@ const Kitchen = () => {
   return (
     <>
       <section className="root-kitchen">
-        <h1  className="h2">Cozinha</h1>
+        <h1 className="h2">Cozinha</h1>
         <h2 className="h2">Pedidos a serem feitos</h2>
         <div className="app-kitchen app">
           <div className="order-done">
@@ -136,7 +134,7 @@ const Kitchen = () => {
             {delivery.map((item, index) => {
               const send = `${new Date(item.hourSend).getHours()}h ${new Date(item.hourSend).getMinutes()}m`;
               const hDelivered = `${new Date(item.hourDelivered).getHours()}h ${new Date(item.hourDelivered).getMinutes()}m`;
-              const time = (hmh.diff(`${send}`, `${hDelivered}`).toString());
+              const difftime = (hmh.diff(`${send}`, `${hDelivered}`).toString());
               return (
                 <div className="order-done" key={index} >
                   {item.status === 'delivered' ?
@@ -150,7 +148,7 @@ const Kitchen = () => {
                           <span className="menu-name text">Pedidos:</span>
                           {item.pedidos.map((item, index) =>
                             <span className="order-kitchen" key={index}> {item.name} Qtd: {item.count} </span>)}
-                          <span className="time">Tempo de preparo:{time}</span>
+                          <span className="time">Tempo de preparo:{difftime}</span>
                         </div>
                       </div>
                     </section>
