@@ -6,7 +6,7 @@ const AllDay = (props) => {
     return (
         <>
             <section>
-                <h3 className="text">Menu All Day</h3>
+                <h2 className="text">Menu All Day</h2>
                 <div>
                     <span className="text">Acompanhamentos</span>
                     <span className="section">

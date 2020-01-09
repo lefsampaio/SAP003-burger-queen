@@ -1,14 +1,12 @@
 .app{
   width: 100%;
-  display: flex;
   flex-flow: wrap;
 }
 .app-kitchen{
   display: flex;
   min-height: 200px;
   background: rgba(238, 230, 230, 0.7);
-  margin: 5px;
-  flex-direction: column;
+  flex-direction: row;
 }
 #root{
   display: flex;
@@ -20,8 +18,13 @@
   width: 100%;
 }
 .root-kitchen{
-  width: 100%;
-  flex-direction: column;
+    /* width: 100%; */
+    flex-direction: column;
+    /* margin: 5px; */
+    /* display: flex; */
+    /* flex: none; */
+    width: 100%;
+    flex-flow: wrap;
 
 }
 .burger-queen{
@@ -35,7 +38,7 @@
 .order-done{
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+
 }
 .div-list{
   list-style: none;
@@ -58,7 +61,10 @@
   padding: 10px;
 
 }
-
+.h2{   
+  padding: 5px;
+  text-align: center;
+  }
 .order-div{
   flex-direction: column;
   background-color: #ffffff;
@@ -68,6 +74,9 @@
   box-shadow: 4px 4px 5px 0px rgba(179,179,179,0.7);
   align-items: center;
   min-width: 260px;
+  min-height: 250px;
+  max-width: 260px;
+  justify-content: space-around;
 }
 .list {
   background: rgba(238, 230, 230, 0.7);
@@ -107,6 +116,8 @@
     background: #D95525;
     border: none;
     border-radius: 5px;
+    margin: 10px;
+    font-size: larger;
 
   }
 
@@ -131,6 +142,9 @@
     margin:0;
     padding: 5px;
   }
+  .client-text{
+    color:#D99F7E;
+  }
   .btn-cozinha{
     background-color: #D99F7E;
   }
@@ -146,6 +160,9 @@
   .menu-text{
     padding: 0px 0px 15px 10px;
   }
+  .order-kitchen{
+    padding: 0px 0px 0px 5px;
+  }
   .btn-cozinha{
     background-color: #ffffff;
     padding: 5px 5px 5px 5px;
@@ -153,6 +170,12 @@
     box-shadow: 4px 4px 5px 0px rgba(179,179,179,0.7);
    
 
+  }
+  .time{
+    text-align-last: unset;
+    padding: 20px;
+    margin: 5px;
+    border-style: dashed;
   }
 
   

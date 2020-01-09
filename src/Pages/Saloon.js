@@ -37,7 +37,6 @@ const Saloon = () => {
       item.count += 1
       setPedidos([...pedidos])
     }
-    setTotal(total + (item.price));
   }
 
   const removeItem = (item, e) => {
@@ -62,7 +61,7 @@ const Saloon = () => {
           table,
           pedidos,
           total,
-          status:'',
+          status: '',
           hourSend: new Date().getTime()
         })
         .then(() => {
@@ -89,13 +88,13 @@ const Saloon = () => {
     <>
       <section className="root">
         <div className="app">
-          <h3 className="text">Menu</h3>
+          <h1  className="h2">Menu</h1>
           <Breakfast items={items} onClick={addItem} />
           <AllDay items={items} onClick={addItem} />
         </div>
         <div className="order-list">
           <form className="list">
-            <h1 className="text">Order</h1>
+            <h1 className="text">Pedidos</h1>
             <Input
               id='clientName'
               title='Nome do cliente'
@@ -114,7 +113,7 @@ const Saloon = () => {
               <div className="order-itens">
                 {pedidos.map(pe => <ResumeItem key={pe.id} name={pe.name} price={pe.price} count={pe.count} onClick={(e) => removeItem(pe, e)} />)}
               </div>
-              <p className="text">Total:{pedidos.reduce((acc, curr) => acc + curr.price * curr.count, 0) + ",00"} </p>
+              <p className="text">Total: R${pedidos.reduce((acc, curr) => acc + curr.price * curr.count, 0) + ",00"} </p>
               <Button
                 class="btn-enviar burger-queen" onClick={onSubmit}>Enviar Pedido
           </Button>

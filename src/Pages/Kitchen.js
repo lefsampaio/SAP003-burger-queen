@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import firebase from '../firebase'
 import '../components/styles.css';
 import Button from '../components/Button'
-// import notification from '../components/notification';
+import { Link } from 'react-router-dom';
 const hmh = require('hmh');
 
 const Kitchen = () => {
@@ -11,7 +11,7 @@ const Kitchen = () => {
   const [delivery, setDelivery] = useState([]);
 
   useEffect(() => {
-    firebase.firestore().collection('orders').where('status','==','').onSnapshot((snap => {
+    firebase.firestore().collection('orders').where('status', '==', '').onSnapshot((snap => {
       const pedidos = snap.docs.map((doc) => ({
         id: doc.id,
         ...doc.data()
@@ -47,7 +47,7 @@ const Kitchen = () => {
         hourDone: new Date().getTime(),
       })
       .then(() => {
-        setOrderDone([...orderdone, {...item, status:'done',  hourDone: new Date().getTime()}])
+        setOrderDone([...orderdone, { ...item, status: 'done', hourDone: new Date().getTime() }])
       })
     if (item.status === 'done') {
       const index = orders.findIndex((i) => i.id === item.id)
@@ -62,7 +62,7 @@ const Kitchen = () => {
         hourDelivered: new Date().getTime()
       })
       .then(() => {
-        setDelivery([...delivery, {...item, status: 'delivered', hourDelivered: new Date().getTime()}])
+        setDelivery([...delivery, { ...item, status: 'delivered', hourDelivered: new Date().getTime() }])
       })
     if (item.status === 'done') {
       const index = orderdone.findIndex((i) => i.id === item.id)
@@ -74,19 +74,22 @@ const Kitchen = () => {
   return (
     <>
       <section className="root-kitchen">
-        <h2 className="text">Kitchen</h2>
-        <div className="app-kitchen">
-          <h2>Pedidos a serem feitos</h2>
+        <h1  className="h2">Cozinha</h1>
+        <h2 className="h2">Pedidos a serem feitos</h2>
+        <div className="app-kitchen app">
           <div className="order-done">
-            {orders.map(order => {
+            {orders.map((order) => {
               return (
                 <section className="section" key={order.id}  >
                   <div className="order-div">
-                    <p className="menu-name menu-text"> Cliente: {order.client}</p>
-                    <p className="menu-name menu-text"> Mesa: {order.table}</p>
-                    <span className="menu-name menu-text">Pedidos:</span>
-                    {order.pedidos.map(p => <span className="menu-name" key={p.id}> {p.name} Qtd: {p.count} </span>)}
-
+                    <div className="menu-name">
+                      <p className="text client-text"> Cliente: {order.client}</p>
+                      <p className="text client-text"> Mesa: {order.table}</p>
+                    </div>
+                    <div className="order-itens">
+                      <span className="menu-name text">Pedidos:</span>
+                      {order.pedidos.map(item => <span className="order-kitchen" key={item.id}> {item.name} Qtd: {item.count} </span>)}
+                    </div>
                     <Button class="btn-enviar burger-queen" onClick={() => orderDone(order)}>Pronto</Button>
                   </div>
                 </section>
@@ -94,54 +97,78 @@ const Kitchen = () => {
               )
             })}
           </div>
+
         </div>
+
         <section className="root-kitchen">
-          <div className="app-kitchen">
-            <h2>Pronto para a Entrega</h2>
-            {orderdone.map((item, index) => {
-              console.log(item)
-              const send = `${new Date(item.hourSend).getHours}h ${new Date(item.hourSend).getMinutes}m`;
-              const hDelivered = `${new Date(item.hourDelivered).getHours}h ${new Date(item.hourDelivered).getMinutes}m`;
-              return (
-                <div key={index} >
-                  {item.status === 'done' ?
-                    <div>
-                      {console.log(hmh.diff(send, hDelivered).toString())}
-                      <h3>Cliente: {item.client} - Mesa: {item.table}</h3>
-                      {item.pedidos.map((item, index) =>
-                        <div key={index}>
-                          <p>{item.name} - Qtd:{item.count} </p>
+          <h2 className="h2">Pronto para a Entrega</h2>
+          <div className="app-kitchen app">
+            <div className="order-done">
+              {orderdone.map((item) => {
+                return (
+                  <section className="section" key={item.id}  >
+                    {item.status === 'done' ?
+                      <div className="order-div">
+                        <div className="menu-name">
+                          <p className="text client-text"> Cliente: {item.client}</p>
+                          <p className="text client-text"> Mesa: {item.table}</p>
                         </div>
-                      )}
-                      <Button class="btn-enviar burger-queen" onClick={() => delivered(item)}>Entregue</Button>
-                    </div>
+                        <div className="order-itens" key={item.id}>
+                          <span className="menu-name text">Pedidos:</span>
+                          {item.pedidos.map(item => <span className="order-kitchen" key={item.id}> {item.name} Qtd: {item.count} </span>)}
+                        </div>
+                        <Button class="btn-enviar burger-queen" onClick={() => delivered(item)}>Entregue</Button>
+                      </div>
+
+                      : null}
+                  </section>
+
+                )
+              })}
+            </div>
+
+          </div>
+        </section>
+
+        <section className="root-kitchen">
+          <h2 className="h2">Pedidos entregues</h2>
+          <div className="app-kitchen app">
+            {delivery.map((item, index) => {
+              const send = `${new Date(item.hourSend).getHours()}h ${new Date(item.hourSend).getMinutes()}m`;
+              const hDelivered = `${new Date(item.hourDelivered).getHours()}h ${new Date(item.hourDelivered).getMinutes()}m`;
+              const time = (hmh.diff(`${send}`, `${hDelivered}`).toString());
+              return (
+                <div className="order-done" key={index} >
+                  {item.status === 'delivered' ?
+                    <section className="section">
+                      <div className="order-div">
+                        <div className="menu-name">
+                          <p className="text client-text"> Cliente: {item.client}</p>
+                          <p className="text client-text"> Mesa: {item.table}</p>
+                        </div>
+                        <div className="order-itens">
+                          <span className="menu-name text">Pedidos:</span>
+                          {item.pedidos.map((item, index) =>
+                            <span className="order-kitchen" key={index}> {item.name} Qtd: {item.count} </span>)}
+                          <span className="time">Tempo de preparo:{time}</span>
+                        </div>
+                      </div>
+                    </section>
+
                     : null}
 
                 </div>
-              )
-            }
 
-            )
-            }
+
+              )
+            })}
+
           </div>
-
-          {delivery.map((item, index) => {
-              const send = `${new Date(item.hourSend).getHours()}h ${new Date(item.hourSend).getMinutes()}m`;
-              const hDelivered = `${new Date(item.hourDelivered).getHours()}h ${new Date(item.hourDelivered).getMinutes()}m`;
-              console.log(send, hDelivered)
-              console.log(hmh.diff(send, hDelivered).toString())
-              return (
-                <div key={index}>
-                  </div>
-                 
-              )
-            }
-
-            )
-            }
-
         </section>
+
+
       </section>
+
     </>
 
   );
