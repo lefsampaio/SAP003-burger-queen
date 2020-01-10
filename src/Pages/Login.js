@@ -35,12 +35,12 @@ const Login = () => {
 
   return (
     <>
-      <section class='container main-container'>
-        <section class="container">
+      <section className='container main-container'>
+        <section className="container-login">
           <Logo />
-        </section>
-        <section class="container">
-          <form class="container">
+        <section className="container">
+          <div>
+          <form className="">
             <Input title="Email"  value={emailState} type="e-mail" placeholder="exemplo@exemplo.com" onChange={(e) => setEmail(e.currentTarget.value)} />
             <Input title="Senha"  value={passWordState} type="password" placeholder="Senha" onChange={(e) => setPassword(e.currentTarget.value)} />
             <div className="">
@@ -60,6 +60,8 @@ const Login = () => {
               />
             </div>
           </form>
+          </div>
+        </section>
         </section>
       </section>
     </>

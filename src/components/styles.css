@@ -81,6 +81,11 @@
   text-align: center;
   width: 100%;
 
+}.container-login{
+
+    display: flex;
+    align-items: center;
+    margin: 10%;
 }
   .input-border{
     border-radius: 5px;

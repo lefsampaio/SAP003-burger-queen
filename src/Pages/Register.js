@@ -66,9 +66,8 @@ const Register = () => {
   return (
     <>
       <section class='container main-container'>
-        <section class="container">
+        <section class="container-login">
           <Logo />
-        </section>
         <section class="container">
           <form class="container">
             <Input value={nameState} title="Nome" type="text" placeholder="Nome" onChange={(e) => setName(e.currentTarget.value)} />
@@ -90,6 +89,7 @@ const Register = () => {
               />
             </div>
           </form>
+          </section>
         </section>
       </section>
     </>
