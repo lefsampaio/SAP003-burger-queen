@@ -11,6 +11,7 @@
     "@testing-library/user-event": "^7.1.2",
     "aphrodite": "^2.4.0",
     "firebase": "^7.6.0",
+    "firebaseui": "^4.4.0",
     "growl-alert": "^1.0.1",
     "hmh": "^2.0.4",
     "react": "^16.12.0",

@@ -8,6 +8,7 @@ import Button from '../components/Button'
 import Input from '../components/Input';
 import growl from 'growl-alert';
 import 'growl-alert/dist/growl-alert.css';
+import Navbar from '../components/Navbar';
 
 const option =
 {
@@ -91,6 +92,7 @@ const Saloon = () => {
 
   return (
     <>
+      <Navbar/>
       <section className="root">
         <div className="app">
           <h1 className="h2">Menu</h1>

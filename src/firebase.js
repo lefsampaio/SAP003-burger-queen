@@ -1,4 +1,5 @@
 import firebase from 'firebase/app';
+import 'firebase/firebase-auth'
 import 'firebase/firestore';
 
 var firebaseConfig = {
@@ -13,4 +14,5 @@ var firebaseConfig = {
   };
   firebase.initializeApp(firebaseConfig);
   firebase.firestore().enablePersistence();
+  
   export default firebase;

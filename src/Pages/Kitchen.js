@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import firebase from '../firebase'
 import '../components/styles.css';
 import Button from '../components/Button'
+import Navbar from '../components/Navbar';
 const hmh = require('hmh');
 
 const Kitchen = () => {
@@ -71,6 +72,7 @@ const Kitchen = () => {
 
   return (
     <>
+    <Navbar/>
       <section className="root-kitchen">
         <h1 className="h2">Cozinha</h1>
         <h2 className="h2">Pedidos a serem feitos</h2>
