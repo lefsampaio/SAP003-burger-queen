@@ -65,30 +65,30 @@ const Register = () => {
   };
   return (
     <>
-      <section class='container main-container'>
+      <section class='container'>
+        <Logo />
         <section class="container-login">
-          <Logo />
-        <section class="container">
-          <form class="container">
-            <Input value={nameState} title="Nome" type="text" placeholder="Nome" onChange={(e) => setName(e.currentTarget.value)} />
-            <Select className="primary-input" onChange={(e) => setService(e.currentTarget.value)} />
-            <Input value={emailState} title="Email" type="e-mail" placeholder="exemplo@exemplo.com" onChange={(e) => setEmail(e.currentTarget.value)} />
-            <Input value={passwordState} title="Senha" type="password" placeholder="Senha" onChange={(e) => setPassword(e.currentTarget.value)} />
-            <div className="">
-              <Button
-                class="btn-enviar burger-queen"
-                children="Voltar"
-                onClick={() => {
-                  history.push("/");
-                }}
-              />
-              <Button
-                class="btn-enviar burger-queen"
-                children="Registrar"
-                onClick={(e) => { register(); e.preventDefault(); }}
-              />
-            </div>
-          </form>
+          <section class="container">
+            <form class="form-container">
+              <Input value={nameState} title="Nome" type="text" placeholder="Nome" onChange={(e) => setName(e.currentTarget.value)} />
+              <Select className="select" title="Selecione" onChange={(e) => setService(e.currentTarget.value)} />
+              <Input value={emailState} title="Email" type="e-mail" placeholder="exemplo@exemplo.com" onChange={(e) => setEmail(e.currentTarget.value)} />
+              <Input value={passwordState} title="Senha" type="password" placeholder="Senha" onChange={(e) => setPassword(e.currentTarget.value)} />
+              <div className="btn-container">
+                <Button
+                  class="btn-enviar burger-queen"
+                  children="Voltar"
+                  onClick={() => {
+                    history.push("/");
+                  }}
+                />
+                <Button
+                  class="btn-enviar burger-queen"
+                  children="Registrar"
+                  onClick={(e) => { register(); e.preventDefault(); }}
+                />
+              </div>
+            </form>
           </section>
         </section>
       </section>

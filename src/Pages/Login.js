@@ -35,33 +35,33 @@ const Login = () => {
 
   return (
     <>
-      <section className='container main-container'>
+      <section className='container'>
+        <Logo />
         <section className="container-login">
-          <Logo />
-        <section className="container">
-          <div>
-          <form className="">
-            <Input title="Email"  value={emailState} type="e-mail" placeholder="exemplo@exemplo.com" onChange={(e) => setEmail(e.currentTarget.value)} />
-            <Input title="Senha"  value={passWordState} type="password" placeholder="Senha" onChange={(e) => setPassword(e.currentTarget.value)} />
-            <div className="">
-              <Button
-                class="btn-enviar burger-queen"
-                children="Login"
-                onClick={(e) => {
-                  login(); e.preventDefault();
-                }}
-              />
-              <Button
-                class="btn-enviar burger-queen"
-                children="Registrar"
-                onClick={(e) => {
-                  history.push("/register"); e.preventDefault();
-                }}
-              />
-            </div>
-          </form>
+
+          <div className="container">
+            <form className="form-container">
+              <Input title="Email" value={emailState} type="e-mail" placeholder="exemplo@exemplo.com" onChange={(e) => setEmail(e.currentTarget.value)} />
+              <Input title="Senha" value={passWordState} type="password" placeholder="Senha" onChange={(e) => setPassword(e.currentTarget.value)} />
+              <div className="btn-container">
+                <Button
+                  class="btn-enviar burger-queen"
+                  children="Login"
+                  onClick={(e) => {
+                    login(); e.preventDefault();
+                  }}
+                />
+                <Button
+                  class="btn-enviar burger-queen"
+                  children="Registrar"
+                  onClick={(e) => {
+                    history.push("/register"); e.preventDefault();
+                  }}
+                />
+              </div>
+            </form>
           </div>
-        </section>
+
         </section>
       </section>
     </>
