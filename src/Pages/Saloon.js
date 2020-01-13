@@ -11,8 +11,7 @@ import 'growl-alert/dist/growl-alert.css';
 import Navbar from '../components/Navbar';
 
 const effect =
-{
-  fadeAway: true,
+{  fadeAway: true,
   fadeAwayTimeOut: 1000,
 }
 const Saloon = () => {
