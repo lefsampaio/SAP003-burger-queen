@@ -8,9 +8,9 @@ import Button from "../components/Button";
 import '../components/styles.css';
 import Logo from '../components/Logo'
 
-const option = {
+const effect = {
   fadeAway: true,
-  fadeAwayTimeout: 500,
+  fadeAwayTimeout: 1000,
 };
 
 const Login = () => {
@@ -24,11 +24,11 @@ const Login = () => {
       .catch((error) => {
         const errorCode = error.code;
         if (errorCode === "auth/wrong-password") {
-          growl.error({ text: "Senha Incorreta", ...option });
+          growl.error({ text: "Senha Incorreta", ...effect });
         } else if (errorCode === "auth/user-not-found") {
-          growl.error({ text: "Email não registrado!", ...option });
+          growl.error({ text: "Email não registrado!", ...effect });
         } else if (errorCode === "auth/invalid-email") {
-          growl.error({ text: "Formato de email inválido", ...option });
+          growl.error({ text: "Formato de email inválido", ...effect });
         }
       });
   };

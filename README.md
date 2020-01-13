@@ -3,6 +3,8 @@
 * [1. Burguer Queen](#1-Burguer-Queen)
 * [2. Resumo do Projeto](#2-Resumo-do-Projeto)
 * [4. Tecnologias](#4-processo-de-design-e-Tecnologias)
+* [5. Considerações Gerais](#5-considerações-gerais)
+* [6. Interface](#6-interface)
 
 ## 1. Burger Queen
 
@@ -24,3 +26,15 @@ A Cozinha deverá receber o pedido a ser preparado e poder marcá-lo como pronto
 * React Hooks
 * @fortawesome/react-fontawesome
 * growl-alert
+
+## 5. Considerações Gerais
+* Interface deve ser pensada específicamente para rodar em tablets.
+* Aplicativo Web responsivo.
+* O aplicativo é um Single Page App.
+
+## 6. Interface
+
+![Página de Login](public/images/login.png)
+![Página de Registro](public/images/registro.png)
+![Página do Salão](public/images/salao.png)
+![Página da Cozinha](public/images/cozinha1.png)

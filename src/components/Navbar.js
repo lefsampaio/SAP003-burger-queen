@@ -10,10 +10,10 @@ import firebase from 'firebase'
 import growl from 'growl-alert';
 import 'growl-alert/dist/growl-alert.css';
 
-const option =
+const effect =
 {
     fadeAway: true,
-    fadeAwayTimeOut: 500,
+    fadeAwayTimeOut: 1000,
 }
 
 const Navbar = () => {
@@ -23,7 +23,7 @@ const Navbar = () => {
             .signOut()
             .then(history.push('/'))
             .catch(() => {
-                growl.error({ text: 'Ocorreu um erro ao sair', ...option })
+                growl.error({ text: 'Ocorreu um erro ao sair', ...effect })
             });
     };
     return (
@@ -32,7 +32,7 @@ const Navbar = () => {
                 <BurgerQueen />
                 <div className="div-list">
                     <li className="nav-li">
-                        <Link className="nav-link" onClick={logout}><FontAwesomeIcon icon={faDoorClosed} />Sair</Link>
+                        <a className="nav-link" onClick={logout}><FontAwesomeIcon icon={faDoorClosed} />Sair</a>
                     </li>
                 </div>
             </div>

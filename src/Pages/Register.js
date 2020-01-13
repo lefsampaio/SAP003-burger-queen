@@ -8,9 +8,9 @@ import Button from "../components/Button";
 import Select from "../components/Select.js";
 import Logo from "../components/Logo.js";
 
-const option = {
+const effect = {
   fadeAway: true,
-  fadeAwayTimeout: 2000,
+  fadeAwayTimeout: 1000,
 };
 
 const Register = () => {
@@ -40,36 +40,36 @@ const Register = () => {
         }).then(() => {
           if (serviceState === "saloon") {
             history.push("/saloon");
-            growl.success({ text: "Bem vindo!", ...option });
+            growl.success({ text: "Bem vindo!", ...effect });
           } else {
             history.push("/kitchen");
-            growl.success({ text: "Bem vindo!", ...option });
+            growl.success({ text: "Bem vindo!", ...effect });
           }
         })
         .catch((error) => {
           const errorCode = error.code;
           if (errorCode === "auth/email-already-in-use") {
-            growl.error({ text: "E-mail já possui uma conta cadastrada!", ...option });
+            growl.error({ text: "E-mail já possui uma conta cadastrada!", ...effect });
           } else if (errorCode === "auth/invalid-email") {
-            growl.error({ text: "Formato de email inválido!", ...option });
+            growl.error({ text: "Formato de email inválido!", ...effect });
           } else if (errorCode === "auth/weak-password") {
-            growl.error({ text: "Senha deve possuir no mínimo 6 caracteres!", ...option });
+            growl.error({ text: "Senha deve possuir no mínimo 6 caracteres!", ...effect });
           }
         });
     } else {
       growl.warning({
         text: "Preencha seu nome",
-        ...option,
+        ...effect,
       });
     }
   };
   return (
     <>
-      <section class='container'>
+      <section className='container'>
         <Logo />
-        <section class="container-login">
-          <section class="container">
-            <form class="form-container">
+        <section className="container-login">
+          <section className="container">
+            <form className="form-container">
               <Input value={nameState} title="Nome" type="text" placeholder="Nome" onChange={(e) => setName(e.currentTarget.value)} />
               <Select className="select" title="Selecione" onChange={(e) => setService(e.currentTarget.value)} />
               <Input value={emailState} title="Email" type="e-mail" placeholder="exemplo@exemplo.com" onChange={(e) => setEmail(e.currentTarget.value)} />

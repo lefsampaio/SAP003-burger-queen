@@ -10,10 +10,10 @@ import growl from 'growl-alert';
 import 'growl-alert/dist/growl-alert.css';
 import Navbar from '../components/Navbar';
 
-const option =
+const effect =
 {
   fadeAway: true,
-  fadeAwayTimeOut: 500,
+  fadeAwayTimeOut: 1000,
 }
 const Saloon = () => {
   document.title = `Burger Queen`;
@@ -71,7 +71,7 @@ const Saloon = () => {
           status: 'pending',
           hourSend: new Date().getTime()
         }).then(() => {
-          growl.success({ text: 'Pedido Enviado', ...option })
+          growl.success({ text: 'Pedido Enviado', ...effect })
         })
       setTable('')
       setClient('')
@@ -79,13 +79,13 @@ const Saloon = () => {
       setTotal('')
     }
     else if (!pedidos.length) {
-      growl.warning({ text: 'Selecione ao menos um produto para realizar o pedido', ...option })
+      growl.warning({ text: 'Selecione ao menos um produto para realizar o pedido', ...effect })
     }
     else if (!client) {
-      growl.warning({ text: 'Insira o nome do cliente', ...option })
+      growl.warning({ text: 'Insira o nome do cliente', ...effect })
     }
     else if (!table) {
-      growl.warning({ text: 'Insira o número da Mesa', ...option })
+      growl.warning({ text: 'Insira o número da Mesa', ...effect })
     }
 
   }
