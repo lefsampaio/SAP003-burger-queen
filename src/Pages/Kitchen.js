@@ -2,16 +2,33 @@ import React, { useEffect, useState } from 'react';
 import firebase from '../firebase'
 import '../components/styles.css';
 import Button from '../components/Button'
+import growl from 'growl-alert';
+import 'growl-alert/dist/growl-alert.css';
 import Navbar from '../components/Navbar';
+import { useHistory } from 'react-router-dom'
 const hmh = require('hmh');
-
+const effect =
+{
+  fadeAway: true,
+  fadeAwayTimeOut: 1000,
+}
 const Kitchen = () => {
+  const history = useHistory();
+  const logout = () => {
+    firebase.auth()
+      .signOut()
+      .then(history.push('/'))
+      .catch(() => {
+        growl.error({ text: 'Ocorreu um erro ao sair', ...effect })
+      });
+  };
+
   const [orders, getOrders] = useState([])
   const [orderdone, setOrderDone] = useState([])
   const [delivery, setDelivery] = useState([]);
 
   useEffect(() => {
-    firebase.firestore().collection('orders').where('status', '==', 'pending').onSnapshot({includeMetadataChanges:true},(snap => {
+    firebase.firestore().collection('orders').where('status', '==', 'pending').onSnapshot({ includeMetadataChanges: true }, (snap => {
       const pedidos = snap.docs.map((doc) => ({
         id: doc.id,
         ...doc.data()
@@ -54,25 +71,9 @@ const Kitchen = () => {
     }
   }
 
-  const delivered = (item) => {
-    firebase
-      .firestore().collection('orders').doc(item.id).update({
-        status: 'delivered',
-        hourDelivered: new Date().getTime()
-      })
-      .then(() => {
-        setDelivery([...delivery, { ...item, status: 'delivered', hourDelivered: new Date().getTime() }])
-      })
-    if (item.status === 'done') {
-      const index = orderdone.findIndex((i) => i.id === item.id)
-      orderdone.splice(index, 1);
-    }
-
-  }
-
   return (
     <>
-    <Navbar/>
+      <Navbar onClick={logout} />
       <section className="root-kitchen">
         <h1 className="h2">Cozinha</h1>
         <h2 className="h2">Pedidos a serem feitos</h2>
@@ -117,7 +118,6 @@ const Kitchen = () => {
                           <span className="menu-name text">Pedidos:</span>
                           {item.pedidos.map(item => <span className="order-kitchen" key={item.id}> {item.name} Qtd: {item.count} </span>)}
                         </div>
-                        <Button class="btn-enviar burger-queen" onClick={() => delivered(item)}>Entregue</Button>
                       </div>
 
                       : null}
